@@ -1,0 +1,44 @@
+[gd_scene load_steps=2 format=2]
+
+[sub_resource type="GDScript" id=1]
+script/source = "extends Button
+
+func _ready():
+	set_visible(true)
+	get_tree().paused = true
+
+func _on_Button_pressed():
+	set_visible(false)
+	get_tree().paused = false
+
+func set_visible(is_visible):
+	for node in get_children():
+		node.visible = is_visible
+"
+
+[node name="CanvasLayer" type="CanvasLayer"]
+
+[node name="ColorRect" type="ColorRect" parent="."]
+anchor_right = 1.0
+anchor_bottom = 1.0
+color = Color( 0.0901961, 0.0666667, 0.0666667, 0.560784 )
+
+[node name="Label" type="Label" parent="."]
+margin_left = 367.0
+margin_top = 271.0
+margin_right = 920.0
+margin_bottom = 336.0
+text = "Press the right and left arrow keys to move around with pressing the up arrow to jump.
+
+Use y to give you a boost.
+"
+
+[node name="Button" type="Button" parent="."]
+margin_left = 526.0
+margin_top = 433.0
+margin_right = 750.0
+margin_bottom = 492.0
+text = "Ok"
+script = SubResource( 1 )
+
+[connection signal="pressed" from="Button" to="Button" method="_on_Button_pressed"]
